@@ -12,6 +12,19 @@ menu = """
 
 => """
 
+def depositar(valor):
+    print("Digite o valor a ser depositado")
+    valor = float(input())
+    saldo += valor
+    extrato += f"Déposito no valor de: {valor}"
+    #print("Deseja fazer mais depósitos?"
+    #"[s] Sim"
+    #"[n] Não")
+    #input(opcao)
+    #if(opcao == "s"):
+    #   while
+
+
 while True:
 
     opcao = input(menu)
