@@ -52,7 +52,7 @@ while True:
     
     elif(opcao == "e"):
         print("Extrato")
-        mostrar_extratoextrato()
+        mostrar_extrato()
     
     elif(opcao == "q"):
         break
