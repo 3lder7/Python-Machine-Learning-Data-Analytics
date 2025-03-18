@@ -13,30 +13,46 @@ menu = """
 => """
 
 def depositar(valor):
-    print("Digite o valor a ser depositado")
-    valor = float(input())
+    global saldo
+    global extrato
     saldo += valor
-    extrato += f"Déposito no valor de: {valor}"
-    #print("Deseja fazer mais depósitos?"
-    #"[s] Sim"
-    #"[n] Não")
-    #input(opcao)
-    #if(opcao == "s"):
-    #   while
+    extrato += (f"Depósito: R$ {valor:.2f}\n")
 
+def sacar(valor):
+    global saldo
+    global numero_saques
+    if(numero_saques < LIMITE_SAQUES):
+        if(valor <= saldo + limite):
+            saldo -= valor
+            global extrato
+            extrato += (f"Saque: R$ {valor:.2f}\n")
+            numero_saques += 1
+        else:
+            print("Saldo insuficiente")
+    else:
+        print("Limite de saques atingido")
 
+def mostrar_extrato():
+    global extrato
+    print(extrato)
+    
 while True:
 
     opcao = input(menu)
 
     if(opcao == "d"):
         print("Depósito")
+        valor = float(input("Digite o valor do depósito: "))
+        depositar(valor)
 
     elif(opcao == "s"):
         print("Saque")
+        valor = float(input("Digite o valor do saque: "))
+        sacar(valor)
     
     elif(opcao == "e"):
         print("Extrato")
+        mostrar_extratoextrato()
     
     elif(opcao == "q"):
         break
