@@ -1,7 +1,7 @@
 saldo = 0
 limite = 500
 extrato = ""
-numero_saques = 0
+numero_saques = 1
 LIMITE_SAQUES = 3 #constante
 
 menu = """
@@ -20,17 +20,23 @@ def depositar(valor):
 
 def sacar(valor):
     global saldo
+    global extrato
     global numero_saques
-    if(numero_saques < LIMITE_SAQUES):
-        if(valor <= saldo + limite):
-            saldo -= valor
-            global extrato
-            extrato += (f"Saque: R$ {valor:.2f}\n")
-            numero_saques += 1
+    if (numero_saques <= 3):
+        if(valor >= limite):
+            print("ERRO! Você só pode sacar até R$500,00")#limite de 500
         else:
-            print("Saldo insuficiente")
+            if(valor > saldo):
+                print("Saldo Insuficiente")
+                print(f"Saldo Atual: R${saldo}")
+            else:
+                saldo -= valor
+                extrato += (f"Saque no valor de: R$ {valor}\n")
+                print(f"Saldo Restante: R${saldo}")
+                print(f"{numero_saques}")
+                numero_saques += 1 #incrementa
     else:
-        print("Limite de saques atingido")
+        print("Número de saques diários atingidos")
 
 def mostrar_extrato():
     global extrato
@@ -47,6 +53,7 @@ while True:
 
     elif(opcao == "s"):
         print("Saque")
+        print(f"Saldo Atual: R${saldo}")
         valor = float(input("Digite o valor do saque: "))
         sacar(valor)
     
